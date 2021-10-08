@@ -1,3 +1,8 @@
+---
+title: Linux记录
+date: 2021-10-05 00:00:00
+---
+
 # 静态ip配置
 
 ## Centos
@@ -335,7 +340,10 @@ default-character-set=utf8
 init_connect='SET collation_connection = utf8_unicode_ci'
 init_connect='SET NAMES utf8'
 character-set-server=utf8
-collation-server=utf8_unicode_ci
+collation-server=utf8_unicode_ci作者: Jerry
+連結: https://butterfly.js.org/posts/dc584b87/#Page-Front-matter
+來源: Butterfly
+著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。
 skip-character-set-client-handshake
 skip-name-resolve
 ```
@@ -412,8 +420,6 @@ docker run -d -p 80:80 --name nginx \
 #开机自启
 sudo docker update nginx --restart=always
 ```
-
-
 
 # Java环境安装
 

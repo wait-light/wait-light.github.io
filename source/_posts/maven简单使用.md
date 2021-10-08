@@ -1,8 +1,13 @@
+---
+title: Maven记录
+date: 2021-10-01 00:00:00
+---
+
 # 安装
 
 1. 检查JAVA_HOME环境变量
 
-   ![image.png](http://ww1.sinaimg.cn/large/008c2CqBly1gmymfjgtfuj30n904y74b.jpg)
+   ![image.png](https://i.loli.net/2021/10/08/x69jbLTE2d8ZtG5.jpg)
 
 2. 解压核心程序压缩包
 
@@ -14,15 +19,15 @@
 
      地址为刚才解压出的文件的根目录。
 
-     ![image.png](http://ww1.sinaimg.cn/large/008c2CqBly1gmymfykw88j30n904yt8q.jpg)
+     ![image.png](https://i.loli.net/2021/10/08/Wq39JRDbjNUg1MP.jpg)
 
    - 添加path
 
-     ![image.png](http://ww1.sinaimg.cn/large/008c2CqBly1gmyog0tu1dj30in07h3yi.jpg)
+     ![image.png](https://i.loli.net/2021/10/08/uHqeAPJWxlGIoD5.jpg)
    
 4. 验证是否安装成功
    在cmd中执行mvn -v，若是有相关版本输出，说明安装成功了。
-   ![image.png](http://ww1.sinaimg.cn/large/008c2CqBly1gmynblwi7jj30t4040dg7.jpg)
+   ![image.png](https://i.loli.net/2021/10/08/fmhue5d9DLkT1rp.jpg)
 
 
 
@@ -250,13 +255,13 @@ Maven的核心程序中仅仅定义了抽象的生命周期，但是具体的工
 - compile
 - test
 
-![compile和test范围依赖](http://ww1.sinaimg.cn/large/008c2CqBly1gmypree32hj30l30683z1.jpg)
+![compile和test范围依赖](https://i.loli.net/2021/10/08/iqcR1t2DsSmlIJ5.jpg)
 
 - provided
 
   *下图为Servlet-API参与的编译范围，其编译范围为provided*
   
-  ![provided范围依赖](http://ww1.sinaimg.cn/large/008c2CqBly1gmypogmvj2j30jw06pdgo.jpg)
+  ![provided范围依赖](https://i.loli.net/2021/10/08/BPnEv5twx82RWQj.jpg)
 
 **三种类型对比**
 
@@ -285,11 +290,11 @@ Maven的核心程序中仅仅定义了抽象的生命周期，但是具体的工
 
 - 就近原则
 
-  ![image.png](http://ww1.sinaimg.cn/large/008c2CqBly1gmytfexdv3j30i205h0sz.jpg)
+  ![image.png](https://i.loli.net/2021/10/08/4PQvI6XUihzWLEw.jpg)
 
 - 先声明着优先（在dependencies的声明顺序）
 
-  ![image.png](http://ww1.sinaimg.cn/large/008c2CqBly1gmytgjfrphj30i904rdg1.jpg)
+  ![image.png](https://i.loli.net/2021/10/08/gm6Hek9rslLBv8q.jpg)
 
 ### 统一管理依赖版本号
 
@@ -531,7 +536,7 @@ Maven的核心程序中仅仅定义了抽象的生命周期，但是具体的工
 
   一个典型的 Maven 构建（build）生命周期是由以下几个阶段的序列组成的：
 
-  ![img](https://www.runoob.com/wp-content/uploads/2018/09/7642256-c967b2c1faeba9ce.png)
+  ![img](https://i.loli.net/2021/10/08/WDCtwgk3VBEXazx.png)
 
   | 生命周期阶段                                | 描述                                                         |
   | :------------------------------------------ | :----------------------------------------------------------- |
