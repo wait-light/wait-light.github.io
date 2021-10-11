@@ -60,6 +60,12 @@ sudo vim /etc/pacman.conf
 #在底部 添加第三方用户源 
 [archlinuxcn]
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+#编辑官方源
+sudo vim /etc/pacman.d/mirrorlist
+#内容
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#更新
+sudo pacman -Syy
 #导入 GPG key
 sudo pacman -S archlinuxcn-keyring
 ```
@@ -423,6 +429,8 @@ sudo docker update nginx --restart=always
 
 # Java环境安装
 
+## centos
+
 ```shell
 #查询yum源中的jdk版本
 yum list | grep jdk
@@ -432,6 +440,13 @@ yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 dirname $(readlink $(readlink $(which java)))
 ```
 
+## arch
+
+```shell
+pacman -S jdk8-openjdk
+#目录/usr/lib/jvm/java-8-openjdk
+```
+
 # 常见目录
 
 ```shell
@@ -439,5 +454,79 @@ dirname $(readlink $(readlink $(which java)))
 /usr/lib/systemd/system
 #全局环境变量 source /etc/profile 更新
 /etc/profile
+```
+
+# NodeJs换源
+
+```shell
+npm config set registry https://registry.npm.taobao.org
+```
+
+# Maven配置
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <localRepository>D:\apache-maven-3.6.3\maven-repository</localRepository>
+
+  <pluginGroups>
+  </pluginGroups>
+    
+  <proxies>
+  </proxies>
+
+  <servers>
+  </servers>
+    
+  <mirrors>
+    <mirror>
+      <id>alimaven</id>
+      <mirrorOf>central</mirrorOf>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <profile>
+      <id>jdk-1.8</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <jdk>1.8</jdk>
+      </activation>
+
+      <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+      </properties>
+    </profile>
+  </profiles>
+</settings>
+```
+
+# Systemd
+
+## 自动加载硬盘
+
+以挂载位置/disk/data为例，在/usr/lib/systemd/system创建disk-data.mount。具体内容如下：
+
+```
+[Unit]
+Description = mount disk
+[Mount] 
+What = /dev/sdb1
+Where = /disk/data
+Type = ntfs
+Options = defaults
+[Install]
+WantedBy = local-fs.target
+```
+
+```shell
+#开机启动
+systemctl enable disk-data.mount
 ```
 
