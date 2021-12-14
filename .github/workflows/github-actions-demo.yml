@@ -10,10 +10,12 @@ jobs:
     steps:
     - name: git checkout...
       uses: actions/checkout@v1
-    - name: install hexo...
+    - name: install hexo and generate
       run: |
         npm install hexo-cli -g
         npm install
+        hexo clean
+        hexo g
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.7
       with:
@@ -23,4 +25,3 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: public
-        BUILD_SCRIPT: hexo clean && hexo g
