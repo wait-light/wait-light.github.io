@@ -78,4 +78,7 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:wait-light/wait-light.github.io.git
+  branch: gh-pages
+  message: 自动部署
