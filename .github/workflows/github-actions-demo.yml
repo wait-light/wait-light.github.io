@@ -21,7 +21,7 @@ jobs:
         npm install hexo-generator-feed  -g
         npm install
     - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
+      uses: JamesIves/github-pages-deploy-action@4.1.7
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
