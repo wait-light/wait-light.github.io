@@ -326,9 +326,9 @@ mysql配置文件
 
 ```bash
 #创建文件夹
-mkdir -p /etc/mysql/conf
+sudo mkdir -p /etc/mysql/conf
 #编辑文件
-vi /etc/mysql/conf/my.cnf
+sudo vim /etc/mysql/conf/my.cnf
 #配置完成后重启mysql
 docker restart mysql
 #开机自启
@@ -346,10 +346,7 @@ default-character-set=utf8
 init_connect='SET collation_connection = utf8_unicode_ci'
 init_connect='SET NAMES utf8'
 character-set-server=utf8
-collation-server=utf8_unicode_ci作者: Jerry
-連結: https://butterfly.js.org/posts/dc584b87/#Page-Front-matter
-來源: Butterfly
-著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。
+collation-server=utf8_unicode_ci
 skip-character-set-client-handshake
 skip-name-resolve
 ```
