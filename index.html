@@ -55,7 +55,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-03-11 13:45:42'
+  postUpdate: '2022-03-11 13:46:23'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -148,8 +148,10 @@
 
 安装时间格式化组件（自己写应该也可以）
 1npm install -s moment
+
 覆盖Date原型方法 toISOString
 1234import moment from &quot;moment&quot;Date.prototype.toISOString = function () &#123;    return moment(this).format(&#x27;YYYY-MM-DD HH:mm:ss&#x27;)&#125;
+
 后台时间格式解析配置（Java Spring）(可选)
 实体类上的时间属性上添加如下注解
 1@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;)
