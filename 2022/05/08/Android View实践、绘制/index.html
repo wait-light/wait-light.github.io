@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>wait-light's blog | wait-light's blog</title><meta name="author" content="wait-light"><meta name="copyright" content="wait-light"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="位置参数View的left、top等参数都是根据父容器的位置来确定的，是相对于于父容器的差值。 事件机制（1）同一个事件序列是指从手指接触屏幕的那一刻起，到手指离开屏幕的那一刻结束，在这个过程 中所产生的一系列事件，这个事件序列以down事件开始，中间含有数量不定的move事件，最终以up事件结束。  （2）正常情况下，一个事件序列只能被一个View拦截且消耗。这一条的原因可以参考。因为一 旦一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wait-light&#39;s blog">
+<meta property="og:url" content="https://wait-light.github.io/2022/05/08/Android%20View%E5%AE%9E%E8%B7%B5%E3%80%81%E7%BB%98%E5%88%B6/index.html">
+<meta property="og:site_name" content="wait-light&#39;s blog">
+<meta property="og:description" content="位置参数View的left、top等参数都是根据父容器的位置来确定的，是相对于于父容器的差值。 事件机制（1）同一个事件序列是指从手指接触屏幕的那一刻起，到手指离开屏幕的那一刻结束，在这个过程 中所产生的一系列事件，这个事件序列以down事件开始，中间含有数量不定的move事件，最终以up事件结束。  （2）正常情况下，一个事件序列只能被一个View拦截且消耗。这一条的原因可以参考。因为一 旦一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg">
+<meta property="article:published_time" content="2022-05-08T06:49:52.682Z">
+<meta property="article:modified_time" content="2022-05-08T06:49:52.682Z">
+<meta property="article:author" content="wait-light">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://wait-light.github.io/2022/05/08/Android%20View%E5%AE%9E%E8%B7%B5%E3%80%81%E7%BB%98%E5%88%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'wait-light\'s blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-08 14:49:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/10/08/SoqKQFbM1GwjOlN.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wait-light's blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-08T06:49:52.682Z" title="发表于 2022-05-08 14:49:52">2022-05-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-08T06:49:52.682Z" title="更新于 2022-05-08 14:49:52">2022-05-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h1><p>View的left、top等参数都是根据父容器的位置来确定的，是相对于于父容器的差值。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1584075/1650433156851-2714ed75-a7b3-4973-b043-f6982d433f5b.png#clientId=u930a9d11-d55d-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=661&id=ue3af232a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=661&originWidth=1019&originalType=binary&ratio=1&rotation=0&showTitle=true&size=44643&status=done&style=none&taskId=udf6871ff-77f2-4f08-9239-a1895ee9168&title=View%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%85%B3%E7%B3%BB&width=1019" alt="image.png" title="View的位置关系"></p>
+<h1 id="事件机制"><a href="#事件机制" class="headerlink" title="事件机制"></a>事件机制</h1><p>（1）同一个事件序列是指从手指接触屏幕的那一刻起，到手指离开屏幕的那一刻结束，在这个过程 中所产生的一系列事件，这个事件序列以down事件开始，中间含有数量不定的move事件，最终以up事件结束。 </p>
+<p>（2）正常情况下，一个事件序列只能被一个View拦截且消耗。这一条的原因可以参考。因为一 旦一个元素拦截了某此事件，那么同一个事件序列内的所有事件都会直接交给它处理，因此同一个事件序列中的事件不能分别由两个View同时处理，但是通过特殊手段可以做到，比如一个View将本该自己处理的事件通过onTouchEvent强行传递给其他View处理。</p>
+<p>（3）某个View一旦决定拦截，那么这一个事件序列都只能由它来处理（如果事件序列能够传递给它 的话），并且它的onInterceptTouchEvent不会再被调用。这条也很好理解，就是说当一个View决定拦截一 个事件后，那么系统会把同一个事件序列内的其他方法都直接交给它来处理，因此就不用再调用这个 View 的onInterceptTouchEvent去询问它是否要拦截了。</p>
+<p>（4）某个View一旦开始处理事件，如果它不消耗ACTION_DOWN事件（onTouchEvent返回了 false），那么同一事件序列中的其他事件都不会再交给它来处理，并且事件将重新交由它的父元素去处 理，即父元素的onTouchEvent会被调用。意思就是事件一旦交给一个View处理，那么它就必须消耗掉，否 则同一事件序列中剩下的事件就不再交给它来处理了，这就好比上级交给程序员一件事，如果这件事没有 处理好，短期内上级就不敢再把事情交给这个程序员做了，二者是类似的道理。 </p>
+<p>（5）如果View不消耗除ACTION_DOWN以外的其他事件，那么这个点击事件会消失，此时父元素的 onTouchEvent并不会被调用，并且当前View可以持续收到后续的事件，最终这些消失的点击事件会传递给 Activity处理。 </p>
+<p>（6）ViewGroup默认不拦截任何事件。Android源码中ViewGroup的onInterceptTouch-Event方法默认返回false。 </p>
+<p>（7）View没有onInterceptTouchEvent方法，一旦有点击事件传递给它，那么它的onTouchEvent方法就会被调用。 </p>
+<p>（8）View的onTouchEvent默认都会消耗事件（返回true），除非它是不可点击的（clickable 和 longClickable同时为false）。View的longClickable属性默认都为false，clickable属性要分情况，比如Button 的clickable属性默认为true，而TextView的clickable属性默认为false。 </p>
+<p>（9）View的enable属性不影响onTouchEvent的默认返回值。哪怕一个View是disable状态的，只要它的 clickable 或者 longClickable 有一个为 true ，那么它的onTouchEvent就返回true。 </p>
+<p>（10）onClick会发生的前提是当前View是可点击的，并且它收到了down和up的事件。 </p>
+<p>（11）事件传递过程是由外向内的，即事件总是先传递给父元素，然后再由父元素分发给子View，通 过 requestDisallowInterceptTouchEvent 方法可以在子元素中干预父元素的事件分发 过程， 但是 ACTION_DOWN 事件除外。  </p>
+<p><strong>事件传递顺序</strong><br>Activity -&gt; Window -&gt; View，即事件总是先传递给Activity，Activity再传递给Window，最后Window再传递给顶级View。顶级View接收到事件后，就会按照事件分发机制去分发事件。  </p>
+<p><strong>事件分发机制伪代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> &#123;</span><br><span class="line">     <span class="type">boolean</span> <span class="variable">consume</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">     <span class="keyword">if</span> (onInterceptTouchEvent(ev)) &#123;</span><br><span class="line">         consume = onTouchEvent(ev);</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         consume = child.dispatchTouchEvent(ev);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> consume;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的伪代码，我们也可以大致了解点击事件的传递规则：对于一个根ViewGroup来说，点击事件产生后，首先会传递给它，这时它的dispatchTouchEvent 就会被调用，如果这个ViewGroup的onInterceptTouchEvent方法返回true就表示它要拦截当前事件，接着事件就会交给这个ViewGroup 处理 ， 即它的 onTouchEvent 方法就会被调用； 如果这个 ViewGroup 的 onInterceptTouchEvent方法返回false就表示它不拦截当前事件，这时当前事件就会继续传递给它的子元素，接着子元素的dispatchTouchEvent方法就会被调用，如此反复直到事件被最终处理。  </p>
+<h1 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1584075/1650506726357-fe31b69d-ccb6-4dcb-a707-82d34b93cf74.png#clientId=u445b3926-f7d8-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=628&id=u32c160c1&margin=%5Bobject%20Object%5D&name=image.png&originHeight=628&originWidth=866&originalType=binary&ratio=1&rotation=0&showTitle=true&size=195275&status=done&style=none&taskId=ucb20688b-cd2d-451d-bafd-b179d283503&title=performTraversals%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E5%9B%BE&width=866" alt="image.png" title="performTraversals的工作流程图"><br>通常情况下：measure决定View的宽和高，layout决定View的四个顶点坐标和实际的宽和高，draw进行实际的绘制。</p>
+<p>在有标题栏的主题下，顶级View的结构如下。通常我们定义的内容被填充至content中。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1584075/1650507101599-0ba8e102-fe36-456f-94ca-c63e8d42e4b1.png#clientId=u445b3926-f7d8-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=524&id=udf438ca1&margin=%5Bobject%20Object%5D&name=image.png&originHeight=524&originWidth=430&originalType=binary&ratio=1&rotation=0&showTitle=true&size=48841&status=done&style=none&taskId=u04206682-a971-4eda-aa85-a54b8de3d36&title=%E9%A1%B6%E7%BA%A7View%EF%BC%9ADecorView%E7%9A%84%E7%BB%93%E6%9E%84&width=430" alt="image.png" title="顶级View：DecorView的结构"><br><strong>空间模式</strong></p>
+<ol>
+<li>UNSPECIFIED</li>
+</ol>
+<p>父容器不对View有任何限制，要多大给多大，这种情况一般用于系统内部，表示一种测量的状态。</p>
+<ol start="2">
+<li><p>EXACTLY 父容器已经检测出View所需要的精确大小，这个时候View的最终大小就是SpecSize所指定的值。它对应于LayoutParams中的match_parent和具体的数值这两种模式。 </p>
+</li>
+<li><p>AT_MOST</p>
+</li>
+</ol>
+<p>父容器指定了一个可用大小即SpecSize，View的大小不能大于这个值，具体是什么值要看不同View的具体实现。它对应于LayoutParams中的wrap_content。  </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1584075/1650507995039-0da47bc5-38c0-4aba-b17a-a53305bfbe99.png#clientId=u445b3926-f7d8-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=318&id=ua8ece41a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=318&originWidth=1121&originalType=binary&ratio=1&rotation=0&showTitle=true&size=104257&status=done&style=none&taskId=u44af998d-3615-47b2-8b30-f42789a88d7&title=%E6%99%AE%E9%80%9AView%E7%9A%84MeasureSpec%E7%9A%84%E5%88%9B%E5%BB%BA%E8%A7%84%E5%88%99&width=1121" alt="image.png" title="普通View的MeasureSpec的创建规则"></p>
+<p><strong>来源</strong>：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/26599538/">Android开发艺术探索-第三章、第四章</a></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/05/08/Linux%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86/"><img class="next-cover" src="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/10/08/SoqKQFbM1GwjOlN.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wait-light</div><div class="author-info__description">感想、记录</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wait-light"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">位置参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">事件机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%98%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">绘制</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/08/Android%20View%E5%AE%9E%E8%B7%B5%E3%80%81%E7%BB%98%E5%88%B6/" title="无题"><img src="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/05/08/Android%20View%E5%AE%9E%E8%B7%B5%E3%80%81%E7%BB%98%E5%88%B6/" title="无题">无题</a><time datetime="2022-05-08T06:49:52.682Z" title="发表于 2022-05-08 14:49:52">2022-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/08/Linux%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86/" title="无题"><img src="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/05/08/Linux%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86/" title="无题">无题</a><time datetime="2022-05-08T06:49:52.682Z" title="发表于 2022-05-08 14:49:52">2022-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/28/axios%E4%BC%A0%E8%BE%93%E6%A0%BC%E5%BC%8F/" title="axios时间传输格式"><img src="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="axios时间传输格式"/></a><div class="content"><a class="title" href="/2022/01/28/axios%E4%BC%A0%E8%BE%93%E6%A0%BC%E5%BC%8F/" title="axios时间传输格式">axios时间传输格式</a><time datetime="2022-01-28T11:56:36.000Z" title="发表于 2022-01-28 19:56:36">2022-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/04/Linux%E5%B8%B8%E7%94%A8/" title="Linux记录"><img src="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux记录"/></a><div class="content"><a class="title" href="/2021/10/04/Linux%E5%B8%B8%E7%94%A8/" title="Linux记录">Linux记录</a><time datetime="2021-10-04T16:00:00.000Z" title="发表于 2021-10-05 00:00:00">2021-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/30/maven%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" title="Maven记录"><img src="https://s2.loli.net/2021/12/14/HkjhdI9vuEWm3BC.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Maven记录"/></a><div class="content"><a class="title" href="/2021/09/30/maven%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" title="Maven记录">Maven记录</a><time datetime="2021-09-30T16:00:00.000Z" title="发表于 2021-10-01 00:00:00">2021-10-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wait-light</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
